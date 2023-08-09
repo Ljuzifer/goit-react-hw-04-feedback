@@ -1,7 +1,7 @@
 export const FeedbackButtons = ({ onChangeStats, onClear }) => {
   return (
     <div>
-      <h2>Feedback</h2>
+      <h2>Please leave feedback</h2>
       <ul>
         <li>
           <button type="button" onClick={() => onChangeStats('good')}>
