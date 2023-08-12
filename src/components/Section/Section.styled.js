@@ -11,6 +11,7 @@ export const Thumb = styled.section`
     padding-right: 8px;
     margin: auto;
     margin-bottom: 44px;
+    background-color: blanchedalmond;
   }
 
   b {
