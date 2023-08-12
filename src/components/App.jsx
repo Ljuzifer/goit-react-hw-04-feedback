@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { FeedbackButtons } from './FeedbackButtons/FeedbackButtons';
 import { Section } from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
+import { GlobalStyle, Box } from './GlobalStyle';
 
 export class App extends Component {
   state = {
@@ -39,7 +40,7 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <div>
+      <Box>
         <Section title="Please leave your feedback">
           <FeedbackButtons
             options={Object.keys(this.state)}
@@ -56,7 +57,9 @@ export class App extends Component {
             percent={this.countPositivePercentage()}
           />
         </Section>
-      </div>
+
+        <GlobalStyle />
+      </Box>
     );
   }
 }

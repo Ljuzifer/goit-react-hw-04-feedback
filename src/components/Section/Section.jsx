@@ -1,8 +1,10 @@
+import { Thumb } from './Section.styled';
+
 export const Section = ({ title, children }) => {
   return (
-    <section>
+    <Thumb>
       <h2>{title} </h2>
       {children}
-    </section>
+    </Thumb>
   );
 };

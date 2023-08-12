@@ -10,19 +10,29 @@ export const Statistics = ({ good, neutral, bad, total, percent }) => {
       {/* <h2>Statistics</h2> */}
       <ul>
         <li>
-          <p>Good: {good}</p>
+          <p>
+            Good: <span>{good}</span>
+          </p>
         </li>
         <li>
-          <p>Neutral: {neutral} </p>
+          <p>
+            Neutral: <span>{neutral}</span>
+          </p>
         </li>
         <li>
-          <p>Bad: {bad} </p>
+          <p>
+            Bad: <span>{bad}</span>
+          </p>
         </li>
         <li>
-          <p>Total: {total} </p>
+          <p>
+            Total: <span>{total}</span>
+          </p>
         </li>
         <li>
-          <p>Positive feedback: {percent} %</p>
+          <p>
+            Positive feedback: <span>{percent} %</span>
+          </p>
         </li>
       </ul>
     </div>
