@@ -21,7 +21,7 @@ export const Thumb = styled.section`
   button {
     font-weight: bold;
     margin-bottom: 44px;
-    padding: 4px 8px;
+    padding: 8px 13px;
     border-radius: 22px;
     text-transform: uppercase;
     background-color: antiquewhite;
