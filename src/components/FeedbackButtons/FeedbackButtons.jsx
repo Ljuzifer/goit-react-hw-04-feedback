@@ -1,29 +1,21 @@
-export const FeedbackButtons = ({ onChangeStats, onClear }) => {
+import { nanoid } from 'nanoid';
+
+export const FeedbackButtons = ({ onChangeStats, onClear, options }) => {
   return (
     <div>
-      <h2>Please leave feedback</h2>
-      <ul>
-        <li>
-          <button type="button" onClick={() => onChangeStats('good')}>
-            Good
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={() => onChangeStats('neutral')}>
-            Neutral
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={() => onChangeStats('bad')}>
-            Bad
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={onClear}>
-            Clear
-          </button>
-        </li>
-      </ul>
+      {options.map(option => (
+        <button
+          key={nanoid()}
+          type="button"
+          onClick={() => onChangeStats(option)}
+        >
+          {option}
+        </button>
+      ))}
+
+      <button type="button" onClick={onClear}>
+        clear
+      </button>
     </div>
   );
 };

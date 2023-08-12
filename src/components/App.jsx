@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { FeedbackButtons } from './FeedbackButtons/FeedbackButtons';
+import { Section } from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
@@ -17,6 +18,15 @@ export class App extends Component {
     });
   };
 
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+
+  countPositivePercentage = () => {
+    const total = this.countTotalFeedback();
+    return total === 0 ? 0 : Math.round((this.state.good / total) * 100);
+  };
+
   handleResetStats = () => {
     this.setState({
       good: 0,
@@ -26,13 +36,26 @@ export class App extends Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
+
     return (
       <div>
-        <FeedbackButtons
-          onChangeStats={this.handleChangeStats}
-          onClear={this.handleResetStats}
-        />
-        <Statistics statItem={this.state} />
+        <Section title="Please leave your feedback">
+          <FeedbackButtons
+            options={Object.keys(this.state)}
+            onChangeStats={this.handleChangeStats}
+            onClear={this.handleResetStats}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            percent={this.countPositivePercentage()}
+          />
+        </Section>
       </div>
     );
   }
