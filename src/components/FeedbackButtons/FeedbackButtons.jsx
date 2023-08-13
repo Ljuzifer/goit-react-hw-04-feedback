@@ -1,11 +1,9 @@
-import { nanoid } from 'nanoid';
-
 export const FeedbackButtons = ({ onChangeStats, onClear, options }) => {
   return (
     <div>
       {options.map(option => (
         <button
-          key={nanoid()}
+          key={option}
           type="button"
           onClick={() => onChangeStats(option)}
         >

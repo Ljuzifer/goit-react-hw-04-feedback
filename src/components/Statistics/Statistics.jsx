@@ -1,13 +1,6 @@
-import { NotificationMessage } from '../NotificationMessage/NotificationMessage';
-
 export const Statistics = ({ good, neutral, bad, total, percent }) => {
-  if (total === 0) {
-    return <NotificationMessage />;
-  }
-
   return (
     <div>
-      {/* <h2>Statistics</h2> */}
       <ul>
         <li>
           <p>

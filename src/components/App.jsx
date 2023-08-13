@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import { FeedbackButtons } from './FeedbackButtons/FeedbackButtons';
 import { Section } from './Section/Section';
+import { FeedbackButtons } from './FeedbackButtons/FeedbackButtons';
 import { Statistics } from './Statistics/Statistics';
+import { NotificationMessage } from './NotificationMessage/NotificationMessage';
 import { GlobalStyle, Box } from './GlobalStyle';
 
 export class App extends Component {
@@ -49,13 +50,17 @@ export class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            percent={this.countPositivePercentage()}
-          />
+          {this.countTotalFeedback() === 0 ? (
+            <NotificationMessage message="There is no feedback, sorry!" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              percent={this.countPositivePercentage()}
+            />
+          )}
         </Section>
 
         <GlobalStyle />

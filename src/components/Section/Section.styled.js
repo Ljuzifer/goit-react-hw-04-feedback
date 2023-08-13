@@ -7,8 +7,7 @@ export const Thumb = styled.section`
     border: 1px solid midnightblue;
     border-radius: 22px;
     max-width: max-content;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 4px 8px;
     margin: auto;
     margin-bottom: 44px;
     background-color: blanchedalmond;
