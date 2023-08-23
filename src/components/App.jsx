@@ -1,70 +1,70 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Section } from './Section/Section';
 import { FeedbackButtons } from './FeedbackButtons/FeedbackButtons';
 import { Statistics } from './Statistics/Statistics';
 import { NotificationMessage } from './NotificationMessage/NotificationMessage';
 import { GlobalStyle, Box } from './GlobalStyle';
 
-export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+
+  const handleChangeStats = option => {
+    switch (option) {
+      case 'good':
+        setGood(good + 1);
+        break;
+      case 'bad':
+        setBad(bad + 1);
+        break;
+      case 'neutral':
+        setNeutral(neutral + 1);
+        break;
+      default:
+        break;
+    }
   };
 
-  handleChangeStats = badge => {
-    this.setState(prevState => {
-      return {
-        [badge]: prevState[badge] + 1,
-      };
-    });
+  const countTotalFeedback = () => {
+    return good + neutral + bad;
   };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+  const countPositivePercentage = () => {
+    const total = countTotalFeedback();
+    return total === 0 ? 0 : Math.round((good / total) * 100);
   };
 
-  countPositivePercentage = () => {
-    const total = this.countTotalFeedback();
-    return total === 0 ? 0 : Math.round((this.state.good / total) * 100);
+  const handleResetStats = () => {
+    setGood(0);
+    setBad(0);
+    setNeutral(0);
   };
 
-  handleResetStats = () => {
-    this.setState({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
-  };
-
-  render() {
-    const { good, neutral, bad } = this.state;
-
-    return (
-      <Box>
-        <Section title="Please leave your feedback">
-          <FeedbackButtons
-            options={Object.keys(this.state)}
-            onChangeStats={this.handleChangeStats}
-            onClear={this.handleResetStats}
+  return (
+    <Box>
+      <Section title="Please leave your feedback">
+        <FeedbackButtons
+          options={['good', 'bad', 'neutral']}
+          onChangeStats={handleChangeStats}
+          onClear={handleResetStats}
+        />
+      </Section>
+      <Section title="Statistics">
+        {countTotalFeedback() === 0 ? (
+          <NotificationMessage message="There is no feedback, sorry!" />
+        ) : (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={countTotalFeedback()}
+            percent={countPositivePercentage()}
           />
-        </Section>
-        <Section title="Statistics">
-          {this.countTotalFeedback() === 0 ? (
-            <NotificationMessage message="There is no feedback, sorry!" />
-          ) : (
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={this.countTotalFeedback()}
-              percent={this.countPositivePercentage()}
-            />
-          )}
-        </Section>
+        )}
+      </Section>
 
-        <GlobalStyle />
-      </Box>
-    );
-  }
-}
+      <GlobalStyle />
+    </Box>
+  );
+};
