@@ -13,13 +13,13 @@ export const App = () => {
   const handleChangeStats = option => {
     switch (option) {
       case 'good':
-        setGood(+1);
+        setGood(prev => prev + 1);
         break;
       case 'bad':
-        setBad(+1);
+        setBad(prev => prev + 1);
         break;
       case 'neutral':
-        setNeutral(+1);
+        setNeutral(prev => prev + 1);
         break;
       default:
         console.warn(`Oops... We don't know that ${option} :(`);
