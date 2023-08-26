@@ -45,7 +45,7 @@ export const App = () => {
     <Box>
       <Section title="Please leave your feedback">
         <FeedbackButtons
-          options={['good', 'bad', 'neutral']}
+          options={Object.keys({ good, bad, neutral })}
           onChangeStats={handleChangeStats}
           onClear={handleResetStats}
         />
